@@ -1,0 +1,45 @@
+.chats {
+  display: flex;
+  flex: 1;
+
+  &-left {
+    width: 310px;
+    background: #fbfbfb;
+    border-right: 1px solid #eaeaea;
+    flex-shrink: 0;
+  }
+  &-head {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+  }
+
+  &-right {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  &-search {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-field {
+    display: flex;
+  }
+
+  &-send {
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="popup">
+  <div class="popup-overlay">
+    {{#> layout/popup/content }}
+    {{#if title}}<div class="popup-title">
+      {{title}}
+    </div>
+    {{/if}}
+    {{#if descr}} <div class="popup-descr">
+      {{> ui/inputFile/inputFile label='Select a file on your computer' name='avatar'}}
+    </div>
+    {{/if}}
+    {{> @partial-block }}
+    {{/ layout/popup/content }}
+  </div>
+</div>
