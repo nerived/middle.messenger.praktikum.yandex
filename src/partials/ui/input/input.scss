@@ -1,8 +1,8 @@
 .input {
   border-width: 0 0 1px 0;
-  border-color: #3369f3;
+  border-color: var(--primary);
   border-style: solid;
-  color: #1e1e1e;
+  color: var(--paper);
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
@@ -13,5 +13,8 @@
 
   &:focus {
     outline: none;
+  }
+  &::placeholder {
+    color: var(--label-collor);
   }
 }

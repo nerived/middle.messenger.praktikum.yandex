@@ -4,8 +4,8 @@
 
   &-left {
     width: 64px;
-    background: #fbfbfb;
-    border-right: 1px solid #eaeaea;
+    background: var(--side-bg);
+    border-right: 1px solid var(--border);
     flex-shrink: 0;
   }
 
