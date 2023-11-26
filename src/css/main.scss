@@ -1,3 +1,24 @@
+:root {
+  --primary: #3369f3;
+  --error: #ff0000;
+  --placeholder: #eaeaea;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --paper: #1e1e1e;
+  --border: #eaeaea;
+  --white: #ffffff;
+  --label-collor: #999;
+  --shadow: rgba(0, 0, 0, 0.14);
+  --side-bg: #fbfbfb;
+
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--paper);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
 * {
   outline: none !important;
   padding: 0;
@@ -76,7 +97,7 @@ button {
 
 body {
   font-size: 16px;
-  color: #000;
+  color: var(--paper);
 }
 
 h1,
