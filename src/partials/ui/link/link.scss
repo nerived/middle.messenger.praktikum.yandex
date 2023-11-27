@@ -1,0 +1,11 @@
+.link {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 30px;
+  display: block;
+
+  &--red {
+    color: var(--error);
+  }
+}

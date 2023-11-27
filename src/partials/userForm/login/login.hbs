@@ -1,0 +1,20 @@
+<form class="centered" action="#">
+
+  {{#> ui/authform/box}}
+  {{> ui/authform/head title="Login"}}
+
+  {{#> ui/authform/body}}
+  {{> ui/field/field placeholder="Login" label="Login" name='login'}}
+  {{> ui/field/field placeholder="Password" label="Password" errorMessage='errorMessage' name='password'}}
+  {{/ ui/authform/body}}
+
+  {{#> ui/authform/footer}}
+  <div class="login-action">
+    {{> ui/button/button label="Sign in" type='submit'}}
+  </div>
+  <div class="login-action">
+    {{> ui/link/link label="Create account" href='/pages/join.html' }}
+  </div>
+  {{/ ui/authform/footer }}
+  {{/ ui/authform/box}}
+</form>

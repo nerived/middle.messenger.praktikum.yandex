@@ -1,0 +1,28 @@
+{{>layout/head pageTitle='Popup'}}
+
+{{#> layout/profile/profile}}
+{{> blocks/avatar/avatar name='Ivan'}}
+<form action="#">
+  {{#> blocks/userDetails/userDetails}}
+  {{> ui/fieldProfile/fieldProfile placeholder="Email" label="Email" value='pochta@yandex.ru' name='email'}}
+  {{> ui/fieldProfile/fieldProfile placeholder="Login" label="Login" value='ivanivanov' name='login'}}
+  {{> ui/fieldProfile/fieldProfile placeholder="First name" label="First name" value='Ivan' name='first_name'}}
+  {{> ui/fieldProfile/fieldProfile placeholder="Second Name" label="Second Name" value='Ivanov' name='second_name'}}
+  {{> ui/fieldProfile/fieldProfile placeholder="Display Name" label="Display Name" value='Ivanov' name='display_name'}}
+  {{> ui/fieldProfile/fieldProfile placeholder="Phone" label="Phone" value='+7 (909) 967 30 30' name='phone'}}
+  {{/ blocks/userDetails/userDetails}}
+
+  {{#> blocks/userDetails/userDetails}}
+  {{> ui/button/button label="Save" type='submit'}}
+  {{/ blocks/userDetails/userDetails}}
+</form>
+
+
+{{/ layout/profile/profile}}
+
+{{#> layout/popup/box title='Upload file' descr='Select a file on your computer'}}
+
+{{> ui/button/button label="Save" type='submit'}}
+
+{{/ layout/popup/box}}
+{{> layout/foot}}
