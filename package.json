@@ -7,8 +7,8 @@
     "dev": "vite",
     "watch-ts": "tsc --noEmit --watch",
     "prebuild": "tsc --noEmit",
-    "start": "npm run build && node ./server.js",
-    "build": "tsc && vite build",
+    "start": "npm run build",
+    "build": "tsc && vite build --emptyOutDir",
     "preview": "vite preview"
   },
   "devDependencies": {

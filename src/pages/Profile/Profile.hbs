@@ -1,0 +1,38 @@
+{{#Container}}
+  {{{Nav}}}
+  {{#ProfileBox}}
+    {{{ProfileLeft}}}
+    {{#ProfileRight}}
+      {{{Avatar name='Ivan' isEditAlloved='true'}}}
+      {{#UserDetails}}
+        {{{FieldProfile placeholder="Email" label="Email" value='pochta@yandex.ru' readonly='readonly'
+name='email'}}}
+        {{{FieldProfile placeholder="Login" label="Login" value='ivanivanov' readonly='readonly'
+name='login'}}}
+        {{{FieldProfile placeholder="First name" label="First name" value='Ivan' readonly='readonly'
+name='first_name'}}}
+        {{{FieldProfile placeholder="Second Name" label="Second Name" value='Ivanov' readonly='readonly'
+name='second_name'}}}
+        {{{FieldProfile placeholder="Display Name" label="Display Name" value='Ivanov' readonly='readonly'
+name='display_name'}}}
+        {{{FieldProfile placeholder="Phone" label="Phone" value='+7 (909) 967 30 30'readonly='readonly'
+name='phone'}}}
+      {{/UserDetails}}
+
+      {{#UserDetails}}
+        {{#Raw}}
+          {{{NavButton label="Change data" page='editProfile' }}}
+        {{/Raw}}
+
+        {{#Raw}}
+          {{{NavButton label="Change password" page='changePassword' }}}
+        {{/Raw}}
+
+        {{#Raw}}
+          {{{Link label="Logout" class='link--red' }}}
+        {{/Raw}}
+      {{/UserDetails}}
+
+    {{/ProfileRight}}
+  {{/ProfileBox}}
+{{/Container}}

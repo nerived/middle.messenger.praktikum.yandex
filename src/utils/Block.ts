@@ -17,11 +17,6 @@ export class Block {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 
-  /** JSDoc
-   * @param {Object} props
-   * @returns {void}
-   */
-
   constructor(propsWithChildren: Record<string, any> = {}) {
     const eventBus = new EventBus();
 
