@@ -1,20 +1,22 @@
-<form class="centered" action="#">
-  {{#AuthformBox}}
-    {{{AuthformHead title="Login"}}}
+<div class="root-centered">
+  {{#Form}}
+    {{#AuthformBox}}
+      {{{AuthformHead title="Login"}}}
 
-    {{#AuthformBody}}
-      {{{Field placeholder="Login" label="Login" name='login'}}}
-      {{{Field placeholder="Password" label="Password" errorMessage='errorMessage' name='password'}}}
-    {{/AuthformBody}}
+      {{#AuthformBody}}
+        {{{Field placeholder="Login" label="Login" name='login'}}}
+        {{{Field placeholder="Password" label="Password" name='password'}}}
+      {{/AuthformBody}}
 
-    {{#AuthformFooter}}
-      <div class="login-action">
-        {{{Button label="Sign in" type='submit'}}}
-      </div>
-      <div class="login-action">
-        {{{NavButton label="Create account" page='join' }}}
-      </div>
-    {{/AuthformFooter}}
+      {{#AuthformFooter}}
+        <div class="login-action">
+          {{{Button label="Sign in" type='submit'}}}
+        </div>
+        <div class="login-action">
+          {{{NavButton label="Create account" page='join' }}}
+        </div>
+      {{/AuthformFooter}}
 
-  {{/AuthformBox}}
-</form>
+    {{/AuthformBox}}
+  {{/Form}}
+</div>

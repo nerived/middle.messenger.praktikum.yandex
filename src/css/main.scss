@@ -111,16 +111,15 @@ p {
   padding: 0;
 }
 
-.centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-}
-
 .root {
   display: flex;
   flex-direction: column;
   flex: 1;
   position: relative;
+}
+.root-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }

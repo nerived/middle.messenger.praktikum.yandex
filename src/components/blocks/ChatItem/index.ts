@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./ChatItem.hbs";
+import template from './ChatItem.hbs';
 
 export class ChatItem extends Block {
   render() {

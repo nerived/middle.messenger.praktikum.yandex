@@ -1,10 +1,10 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import templateField from "./ChatsField.hbs";
-import templateHead from "./ChatsHead.hbs";
-import templateLeft from "./ChatsLeft.hbs";
-import templateRight from "./ChatsRight.hbs";
-import templateBox from "./ChatsBox.hbs";
+import templateField from './ChatsField.hbs';
+import templateHead from './ChatsHead.hbs';
+import templateLeft from './ChatsLeft.hbs';
+import templateRight from './ChatsRight.hbs';
+import templateBox from './ChatsBox.hbs';
 
 export class ChatsBox extends Block {
   render() {

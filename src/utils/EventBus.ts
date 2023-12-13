@@ -1,8 +1,10 @@
-type Callback = (...args: any[]) => void;
+export type Callback = (...args: unknown[]) => void;
 
 export class EventBus {
-  private readonly listeners: Record<string, Array<(...args: any[]) => void>> =
-    {};
+  private readonly listeners: Record<
+    string,
+    Array<(...args: unknown[]) => void>
+  > = {};
 
   on(event: string, callback: Callback) {
     if (!this.listeners[event]) {
@@ -22,12 +24,12 @@ export class EventBus {
     );
   }
 
-  emit(event: string, ...args: any[]) {
+  emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event]) {
       throw new Error(`Event not found: ${event}`);
     }
 
-    this.listeners[event].forEach(function (listener) {
+    this.listeners[event].forEach((listener) => {
       listener(...args);
     });
   }

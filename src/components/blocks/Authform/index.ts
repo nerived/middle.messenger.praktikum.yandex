@@ -1,9 +1,9 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import templateBody from "./AuthformBody.hbs";
-import templateBox from "./AuthformBox.hbs";
-import templateFooter from "./AuthformFooter.hbs";
-import templateHead from "./AuthformHead.hbs";
+import templateBody from './AuthformBody.hbs';
+import templateBox from './AuthformBox.hbs';
+import templateFooter from './AuthformFooter.hbs';
+import templateHead from './AuthformHead.hbs';
 
 export class AuthformBody extends Block {
   render() {

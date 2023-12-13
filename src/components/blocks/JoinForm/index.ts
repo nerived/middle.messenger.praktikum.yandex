@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./JoinForm.hbs";
+import template from './JoinForm.hbs';
 
 export class JoinForm extends Block {
   render() {

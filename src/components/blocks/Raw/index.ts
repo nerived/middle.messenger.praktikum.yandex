@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./Raw.hbs";
+import template from './Raw.hbs';
 
 export class Raw extends Block {
   render() {

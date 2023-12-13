@@ -1,8 +1,8 @@
 const enum METHODS {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
 
 type Options = {
@@ -12,16 +12,16 @@ type Options = {
   headers: Record<string, string>;
 };
 
-function queryStringify(data: Options["data"]) {
-  if (typeof data !== "object") {
-    throw new Error("Data must be object");
+function queryStringify(data: Options['data']) {
+  if (typeof data !== 'object') {
+    throw new Error('Data must be object');
   }
   const keys = Object.keys(data);
   return keys.reduce((acc, field, index) => {
     return `${acc}${field}=${data[field].toString()}${
-      index < keys.length - 1 ? "&" : ""
+      index < keys.length - 1 ? '&' : ''
     }`;
-  }, "?");
+  }, '?');
 }
 
 class HTTPTransport {
@@ -32,6 +32,7 @@ class HTTPTransport {
       options.timeout
     );
   };
+
   post = (url: string, options: Partial<Options> = {}) => {
     return this.request(
       url,
@@ -39,6 +40,7 @@ class HTTPTransport {
       options.timeout
     );
   };
+
   put = (url: string, options: Partial<Options> = {}) => {
     return this.request(
       url,
@@ -46,6 +48,7 @@ class HTTPTransport {
       options.timeout
     );
   };
+
   delete = (url: string, options: Partial<Options> = {}) => {
     return this.request(
       url,
@@ -56,14 +59,14 @@ class HTTPTransport {
 
   request = (
     url: string,
-    options: Partial<Options> & Required<Pick<Options, "method">>,
+    options: Partial<Options> & Required<Pick<Options, 'method'>>,
     timeout = 5000
   ) => {
     const { method, data, headers = {} } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
-        reject("No method");
+        reject(new Error('No method'));
         return;
       }
 
@@ -76,7 +79,7 @@ class HTTPTransport {
         xhr.setRequestHeader(key, headers[key]);
       });
 
-      xhr.onload = function () {
+      xhr.onload = () => {
         resolve(xhr);
       };
       xhr.onabort = reject;

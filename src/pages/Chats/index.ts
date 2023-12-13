@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./Chats.hbs";
+import template from './Chats.hbs';
 
 export class ChatsPage extends Block {
   render() {

@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./Nav.hbs";
+import template from './Nav.hbs';
 
 export class Nav extends Block {
   render() {

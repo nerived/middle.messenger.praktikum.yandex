@@ -22,4 +22,63 @@
     line-height: 1.2;
     margin-top: 4px;
   }
+
+  &--profile {
+    margin-bottom: 5px;
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    height: 30px;
+    width: 100%;
+    position: relative;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .field--error {
+      border-bottom: 1px solid var(--error);
+    }
+
+    .field-label {
+      color: var(--paper);
+      font-size: 14px;
+      line-height: 30px;
+      height: 30px;
+    }
+
+    .field-input {
+      margin-left: auto;
+
+      input {
+        text-align: right;
+        border-bottom: 0;
+        color: var(--label-collor);
+      }
+    }
+
+    .field-error {
+      position: absolute;
+      right: 0;
+      top: 90%;
+    }
+  }
+
+  &--message {
+    width: 100%;
+    margin-bottom: 0;
+    position: relative;
+
+    .field-input {
+      input {
+        // border-bottom-color: var(--label-collor);
+      }
+    }
+
+    .field-error {
+      position: absolute;
+      right: 0;
+      top: 90%;
+    }
+  }
 }

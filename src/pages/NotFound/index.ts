@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./NotFound.hbs";
+import template from './NotFound.hbs';
 
 export class NotFoundPage extends Block {
   render() {

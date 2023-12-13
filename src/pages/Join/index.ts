@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./Join.hbs";
+import template from './Join.hbs';
 
 export class JoinPage extends Block {
   render() {

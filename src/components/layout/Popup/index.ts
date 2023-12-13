@@ -1,7 +1,7 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import templateBox from "./PopupBox.hbs";
-import templateContent from "./PopupContent.hbs";
+import templateBox from './PopupBox.hbs';
+import templateContent from './PopupContent.hbs';
 
 export class PopupBox extends Block {
   render() {

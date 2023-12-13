@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./ServerError.hbs";
+import template from './ServerError.hbs';
 
 export class ServerErrorPage extends Block {
   render() {

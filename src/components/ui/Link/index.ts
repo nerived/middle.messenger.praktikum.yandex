@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./Link.hbs";
+import template from './Link.hbs';
 
 export class Link extends Block {
   render() {

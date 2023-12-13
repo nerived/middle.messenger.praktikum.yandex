@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./EditProfile.hbs";
+import template from './EditProfile.hbs';
 
 export class EditProfilePage extends Block {
   render() {

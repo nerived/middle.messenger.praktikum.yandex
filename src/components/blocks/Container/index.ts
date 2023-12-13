@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./Container.hbs";
+import template from './Container.hbs';
 
 export class Container extends Block {
   render() {

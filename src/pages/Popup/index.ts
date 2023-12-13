@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./Popup.hbs";
+import template from './Popup.hbs';
 
 export class PopupPage extends Block {
   render() {

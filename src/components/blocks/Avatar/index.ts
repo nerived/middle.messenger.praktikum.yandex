@@ -1,6 +1,6 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./Avatar.hbs";
+import template from './Avatar.hbs';
 
 export class Avatar extends Block {
   render() {

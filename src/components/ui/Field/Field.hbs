@@ -1,7 +1,7 @@
-<div class="field">
+<div class="field  {{#if mod}}field--{{mod}}{{/if}} {{#if errorMessage}}field--error{{/if}}">
   <div class="field-label">{{label}}</div>
   <div class="field-input">
-    {{{Input placeholder=placeholder }}}
+    {{{Input placeholder=placeholder value=value name=name type=type readonly=readonly onBlur=onBlur}}}
   </div>
   <div class="field-error">{{errorMessage}}</div>
 </div>

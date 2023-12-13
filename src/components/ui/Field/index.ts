@@ -1,23 +1,35 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
+import { isValidValue, ValidationRules } from '../../../utils/validate';
 
-import template from "./Field.hbs";
-
-import { InputProps } from "../Input";
-
-interface FieldProps extends InputProps {
-  errorMessage?: string;
-  label?: string;
-}
+import template from './Field.hbs';
 
 export class Field extends Block {
-  constructor(props: FieldProps) {
+  constructor(props: Record<string | symbol, unknown>) {
     super({
       ...props,
-      events: {
-        change: props.onChange,
-        blur: props.onBlur,
+      onBlur: (e: Event & { target: HTMLFormElement }) => {
+        this.validateService(e);
       },
     });
+
+    this.validateService = this.validateService.bind(this);
+  }
+
+  validateService(e: Event & { target: HTMLFormElement }) {
+    const name = e.target.name as ValidationRules;
+    const value = e.target.value;
+
+    const isValid = isValidValue(name, value);
+
+    if (!isValid) {
+      this.setProps({
+        errorMessage: value ? `invalid ${name} field` : 'Is required',
+        value,
+      });
+    } else {
+      this.setProps({ errorMessage: '', value });
+    }
+    return isValid;
   }
 
   render() {

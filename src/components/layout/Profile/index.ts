@@ -1,8 +1,8 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import templateBox from "./ProfileBox.hbs";
-import templateLeft from "./ProfileLeft.hbs";
-import templateRight from "./ProfileRight.hbs";
+import templateBox from './ProfileBox.hbs';
+import templateLeft from './ProfileLeft.hbs';
+import templateRight from './ProfileRight.hbs';
 
 export class ProfileBox extends Block {
   render() {

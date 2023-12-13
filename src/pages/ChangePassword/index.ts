@@ -1,6 +1,6 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
-import template from "./ChangePassword.hbs";
+import template from './ChangePassword.hbs';
 
 export class ChangePasswordPage extends Block {
   render() {

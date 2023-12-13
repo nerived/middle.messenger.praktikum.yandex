@@ -1,16 +1,9 @@
-import Block from "../../../utils/Block";
+import Block from '../../../utils/Block';
 
-import template from "./Button.hbs";
-
-interface ButtonProps {
-  onClick?: () => void;
-  events: {
-    click: () => void;
-  };
-}
+import template from './Button.hbs';
 
 export class Button extends Block {
-  constructor(props: ButtonProps) {
+  constructor(props: Record<string | symbol, unknown>) {
     super({
       ...props,
       events: {
