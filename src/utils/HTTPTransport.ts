@@ -5,6 +5,8 @@ const enum METHODS {
   DELETE = 'DELETE',
 }
 
+// не нашел подходящий тип для данных формы, что юы совпали с типом xhr.send().
+// Пока чтобы не отвелкаться на тс, поставил тут any.
 type Options = {
   timeout?: number;
   method: METHODS;

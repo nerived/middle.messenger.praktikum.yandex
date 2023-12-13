@@ -114,7 +114,8 @@ export class Block {
     oldProps: Record<string | symbol, unknown>,
     newProps: Record<string | symbol, unknown>
   ) {
-    return true;
+    const isTheSameObject = oldProps === newProps;
+    return isTheSameObject || true;
   }
 
   public setProps = (nextProps: Record<string | symbol, unknown>) => {
