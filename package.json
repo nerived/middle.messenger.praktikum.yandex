@@ -7,11 +7,12 @@
     "dev": "vite",
     "watch-ts": "tsc --noEmit --watch",
     "prebuild": "tsc --noEmit",
-    "start": "npm run build",
-    "build": "yarn check-lint && yarn check-ts && vite build --emptyOutDir",
+    "start": "npm run build && node ./server.js",
+    "build": "yarn check-lint && yarn check-ts && yarn check-style && vite build --emptyOutDir",
     "preview": "vite preview",
     "check-lint": "./node_modules/.bin/eslint src --ext .ts",
-    "check-ts": "./node_modules/.bin/tsc --noEmit"
+    "check-ts": "./node_modules/.bin/tsc --noEmit",
+    "check-style": "stylelint '**/*.scss'"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
@@ -19,6 +20,7 @@
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.55.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "express": "^4.18.2",
     "sass": "^1.69.5",
     "stylelint": "^15.11.0",
     "stylelint-scss": "^5.3.1",
