@@ -111,7 +111,13 @@ p {
   padding: 0;
 }
 
-.centered {
+.root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+.root-centered {
   display: flex;
   align-items: center;
   justify-content: center;
