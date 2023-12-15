@@ -1,9 +1,17 @@
 import Block from '../../../utils/Block';
 
+import { InputProps } from '../Input';
+
 import template from './InputFile.hbs';
 
-export class InputFile extends Block {
-  constructor(props: Record<string | symbol, unknown>) {
+export interface InputFileProps extends InputProps {
+  label: string;
+  onChange: (...args: any) => void;
+  onBlur: (...args: any) => void;
+}
+
+export class InputFile extends Block<InputFileProps> {
+  constructor(props: InputFileProps) {
     super({
       ...props,
       events: {

@@ -1,10 +1,16 @@
-import Block from '../../../utils/Block';
+import Block, { BlockProps } from '../../../utils/Block';
 import { render, ROUTES } from '../../../utils/render';
 
 import template from './NavButton.hbs';
 
-export class NavButton extends Block {
-  constructor(props: Record<string | symbol, unknown>) {
+export interface NavButtonProps extends BlockProps {
+  label: string;
+  page: string;
+  class?: string;
+}
+
+export class NavButton extends Block<NavButtonProps> {
+  constructor(props: NavButtonProps) {
     super({
       ...props,
       events: {

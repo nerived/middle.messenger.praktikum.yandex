@@ -1,3 +1,5 @@
+import Block from './utils/Block';
+
 import { registerComponent } from './utils/registerComponent';
 import { render } from './utils/render';
 
@@ -45,44 +47,44 @@ import { Field } from './components/ui/Field';
 import { Link } from './components/ui/Link';
 
 // blocks
-registerComponent('Raw', Raw);
-registerComponent('Avatar', Avatar);
-registerComponent('ChatItem', ChatItem);
-registerComponent('UserDetails', UserDetails);
-registerComponent('JoinForm', JoinForm);
-registerComponent('LoginForm', LoginForm);
-registerComponent('Container', Container);
-registerComponent('Form', Form);
+registerComponent('Raw', Raw as typeof Block);
+registerComponent('Avatar', Avatar as typeof Block);
+registerComponent('ChatItem', ChatItem as typeof Block);
+registerComponent('UserDetails', UserDetails as typeof Block);
+registerComponent('JoinForm', JoinForm as typeof Block);
+registerComponent('LoginForm', LoginForm as typeof Block);
+registerComponent('Container', Container as typeof Block);
+registerComponent('Form', Form as typeof Block);
 
-registerComponent('AuthformBody', AuthformBody);
-registerComponent('AuthformBox', AuthformBox);
-registerComponent('AuthformFooter', AuthformFooter);
-registerComponent('AuthformHead', AuthformHead);
+registerComponent('AuthformBody', AuthformBody as typeof Block);
+registerComponent('AuthformBox', AuthformBox as typeof Block);
+registerComponent('AuthformFooter', AuthformFooter as typeof Block);
+registerComponent('AuthformHead', AuthformHead as typeof Block);
 
 // layout
-registerComponent('Nav', Nav);
-registerComponent('Stub', Stub);
+registerComponent('Nav', Nav as typeof Block);
+registerComponent('Stub', Stub as typeof Block);
 
-registerComponent('ProfileBox', ProfileBox);
-registerComponent('ProfileLeft', ProfileLeft);
-registerComponent('ProfileRight', ProfileRight);
+registerComponent('ProfileBox', ProfileBox as typeof Block);
+registerComponent('ProfileLeft', ProfileLeft as typeof Block);
+registerComponent('ProfileRight', ProfileRight as typeof Block);
 
-registerComponent('ChatsBox', ChatsBox);
-registerComponent('ChatsLeft', ChatsLeft);
-registerComponent('ChatsRight', ChatsRight);
-registerComponent('ChatsField', ChatsField);
-registerComponent('ChatsHead', ChatsHead);
+registerComponent('ChatsBox', ChatsBox as typeof Block);
+registerComponent('ChatsLeft', ChatsLeft as typeof Block);
+registerComponent('ChatsRight', ChatsRight as typeof Block);
+registerComponent('ChatsField', ChatsField as typeof Block);
+registerComponent('ChatsHead', ChatsHead as typeof Block);
 
-registerComponent('PopupBox', PopupBox);
-registerComponent('PopupContent', PopupContent);
+registerComponent('PopupBox', PopupBox as typeof Block);
+registerComponent('PopupContent', PopupContent as typeof Block);
 
 // ui
-registerComponent('Button', Button);
-registerComponent('NavButton', NavButton);
-registerComponent('Input', Input);
-registerComponent('InputFile', InputFile);
-registerComponent('Field', Field);
-registerComponent('Link', Link);
+registerComponent('Button', Button as typeof Block);
+registerComponent('NavButton', NavButton as typeof Block);
+registerComponent('Input', Input as typeof Block);
+registerComponent('InputFile', InputFile as typeof Block);
+registerComponent('Field', Field as typeof Block);
+registerComponent('Link', Link as typeof Block);
 
 window.addEventListener('DOMContentLoaded', () => {
   render('login');

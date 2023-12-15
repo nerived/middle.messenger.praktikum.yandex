@@ -4,7 +4,12 @@ import { nanoid } from 'nanoid';
 
 import { EventBus, Callback } from './EventBus';
 
-export class Block {
+export interface BlockProps {
+  [key: string | symbol]: any;
+  events?: Record<string, (...args: any) => void>;
+}
+
+class Block<Props extends BlockProps = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,17 +19,17 @@ export class Block {
 
   public id = nanoid(6);
 
-  protected props: Record<string | symbol, unknown>;
+  protected props: Props;
 
-  protected refs: Record<string, Block> = {};
+  protected refs: Record<string, Block<Props>> = {};
 
-  public children: Record<string, Block | Block[]>;
+  public children: Record<string, Block<Props> | Block<Props>[]>;
 
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
-  constructor(propsWithChildren: Record<string, unknown> = {}) {
+  constructor(propsWithChildren = {} as Props) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -36,9 +41,9 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: Record<string, unknown>) {
-    const props: Record<string, unknown> = {};
-    const children: Record<string, Block | Block[]> = {};
+  private _getChildrenAndProps(childrenAndProps = {} as Props) {
+    const props = {} as Props;
+    const children: Record<string, Block<Props> | Block<Props>[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (
@@ -47,7 +52,7 @@ export class Block {
       ) {
         children[key] = value;
       } else {
-        props[key] = value;
+        props[key as keyof Props] = value;
       }
     });
 
@@ -55,13 +60,21 @@ export class Block {
   }
 
   private _addEvents() {
-    const { events = {} } = this.props as {
-      events: Record<string, () => void>;
-    };
+    const { events } = this.props;
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        this._element?.addEventListener(eventName, events[eventName]);
+      });
+    }
+  }
 
-    Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
-    });
+  private _removeEvents() {
+    const { events } = this.props;
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        this._element?.removeEventListener(eventName, events[eventName]);
+      });
+    }
   }
 
   private _registerEvents(eventBus: EventBus) {
@@ -101,24 +114,18 @@ export class Block {
     });
   }
 
-  private _componentDidUpdate(
-    oldProps: Record<string | symbol, unknown>,
-    newProps: Record<string | symbol, unknown>
-  ) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(
-    oldProps: Record<string | symbol, unknown>,
-    newProps: Record<string | symbol, unknown>
-  ) {
+  protected componentDidUpdate(oldProps: Props, newProps: Props) {
     const isTheSameObject = oldProps === newProps;
     return isTheSameObject || true;
   }
 
-  public setProps = (nextProps: Record<string | symbol, unknown>) => {
+  public setProps = (nextProps: Partial<Props>) => {
     if (!nextProps) {
       return;
     }
@@ -136,6 +143,7 @@ export class Block {
     const newElement = fragment.firstElementChild as HTMLElement;
 
     if (this._element) {
+      this._removeEvents();
       this._element.replaceWith(newElement);
     }
 
@@ -174,7 +182,7 @@ export class Block {
     return this.element;
   }
 
-  private _makePropsProxy(props: Record<string | symbol, unknown>) {
+  private _makePropsProxy(props: Props) {
     const self = this;
 
     return new Proxy(props, {
@@ -184,8 +192,7 @@ export class Block {
       },
       set(target, prop, val) {
         const prevProps = { ...target };
-
-        target[prop] = val;
+        target[prop as keyof Props] = val;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, target);
         return true;
       },

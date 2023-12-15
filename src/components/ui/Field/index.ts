@@ -1,10 +1,18 @@
 import Block from '../../../utils/Block';
 import { isValidValue, ValidationRules } from '../../../utils/validate';
 
+import { InputProps } from '../Input';
 import template from './Field.hbs';
 
-export class Field extends Block {
-  constructor(props: Record<string | symbol, unknown>) {
+export interface FieldProps extends InputProps {
+  mod?: string;
+  errorMessage: string;
+  label: string;
+  onBlur: (...args: any) => void;
+}
+
+export class Field extends Block<FieldProps> {
+  constructor(props: FieldProps) {
     super({
       ...props,
       onBlur: (e: Event & { target: HTMLFormElement }) => {
@@ -19,17 +27,8 @@ export class Field extends Block {
     const name = e.target.name as ValidationRules;
     const value = e.target.value;
 
-    const isValid = isValidValue(name, value);
-
-    if (!isValid) {
-      this.setProps({
-        errorMessage: value ? `invalid ${name} field` : 'Is required',
-        value,
-      });
-    } else {
-      this.setProps({ errorMessage: '', value });
-    }
-    return isValid;
+    const validationMessage = isValidValue(name, value);
+    this.setProps({ errorMessage: validationMessage, value });
   }
 
   render() {

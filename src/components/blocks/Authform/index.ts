@@ -1,4 +1,4 @@
-import Block from '../../../utils/Block';
+import Block, { BlockProps } from '../../../utils/Block';
 
 import templateBody from './AuthformBody.hbs';
 import templateBox from './AuthformBox.hbs';
@@ -23,7 +23,11 @@ export class AuthformFooter extends Block {
   }
 }
 
-export class AuthformHead extends Block {
+export interface AuthformHeadProps extends BlockProps {
+  title?: string;
+}
+
+export class AuthformHead extends Block<AuthformHeadProps> {
   render() {
     return this.compile(templateHead, this.props);
   }
