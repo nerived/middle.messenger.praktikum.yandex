@@ -1,9 +1,18 @@
-import Block from '../../../utils/Block';
+import Block, { BlockProps } from '../../../utils/Block';
 
 import template from './Input.hbs';
 
-export class Input extends Block {
-  constructor(props: Record<string | symbol, unknown>) {
+export interface InputProps extends BlockProps {
+  placeholder?: string;
+  value: string;
+  name: string;
+  type?: string;
+  readonly?: string;
+  events?: Record<string, (...args: any) => void>;
+}
+
+export class Input extends Block<InputProps> {
+  constructor(props: InputProps) {
     super({
       ...props,
       events: {

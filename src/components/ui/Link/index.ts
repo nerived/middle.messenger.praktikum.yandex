@@ -1,8 +1,14 @@
-import Block from '../../../utils/Block';
+import Block, { BlockProps } from '../../../utils/Block';
 
 import template from './Link.hbs';
 
-export class Link extends Block {
+export interface LinkProps extends BlockProps {
+  href: string;
+  label: string;
+  class?: string;
+}
+
+export class Link extends Block<LinkProps> {
   render() {
     return this.compile(template, this.props);
   }
