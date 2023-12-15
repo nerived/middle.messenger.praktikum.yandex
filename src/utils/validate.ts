@@ -65,11 +65,11 @@ const validatorsRegExp = {
 };
 
 export const isValidValue = (name: ValidationRules, value: string) => {
-  if (!value) {
-    return 'Must not be empty.';
-  }
-
   if (validatorsRegExp[name]) {
+    if (!value) {
+      return 'Must not be empty.';
+    }
+
     return validatorsRegExp[name].regExp.test(value)
       ? ''
       : validatorsRegExp[name].message;
