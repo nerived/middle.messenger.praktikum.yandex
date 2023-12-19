@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb-base/legacy",
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+      "@typescript-eslint"
+  ],
+  "rules": {
+      "strict": 0,
+      "no-console": 0,
+      "no-param-reassign": 0,
+      "no-lonely-if": 0,
+      "comma-dangle": 0,
+      "no-shadow": 0,
+      "no-unused-vars": 0,
+      "max-classes-per-file": 0,
+      "max-params": [
+          2,
+          3
+      ],
+      "no-underscore-dangle": 0,
+      "class-methods-use-this": 0,
+      "operator-linebreak": 0,
+      "no-use-before-define": 0
+  }
+}
