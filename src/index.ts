@@ -146,13 +146,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    await AuthController.fetchUser();
+    if (isProtectedRoute) {
+      await AuthController.fetchUser();
+    }
 
     Router.start();
-
-    if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
-    }
+    Router.go(window.location.pathname);
   } catch (e) {
     Router.start();
 
