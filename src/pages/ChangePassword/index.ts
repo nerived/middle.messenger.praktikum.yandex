@@ -35,7 +35,7 @@ export class ChangePasswordPage extends Block {
           if (key === 'newPasswordCheck') {
             return acc;
           }
-          // @ts-expect-error
+          // @ts-expect-error: Should expect string
           acc[key] = value;
           return acc;
         }, {} as UserChangePassword);

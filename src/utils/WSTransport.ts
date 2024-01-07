@@ -43,7 +43,7 @@ export default class WSTransport extends EventBus {
   }
 
   private setupPing() {
-    // @ts-expect-error
+    // @ts-expect-error: Should expect Timeout
     this.pingInterval = setInterval(() => {
       this.send({ type: 'ping' });
     }, 5000);

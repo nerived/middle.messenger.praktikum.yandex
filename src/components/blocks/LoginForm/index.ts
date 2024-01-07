@@ -32,7 +32,7 @@ export class LoginForm extends Block {
         const formDataElem = new FormData(e.target);
         const formData = [...formDataElem].reduce((acc, item) => {
           const [key, value] = item;
-          // @ts-expect-error
+          // @ts-expect-error: Should expect string
           acc[key] = value;
           return acc;
         }, {} as SignupData);

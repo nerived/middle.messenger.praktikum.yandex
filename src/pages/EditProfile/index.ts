@@ -1,5 +1,6 @@
 import Block from '../../utils/Block';
 import { connect } from '../../utils/Store';
+import { UserData } from '../../api/UserAPI';
 
 import AuthController from '../../controllers/AuthController';
 import UserController from '../../controllers/UserController';
@@ -28,15 +29,13 @@ export class EditProfilePage extends Block {
         });
 
         const formDataElem = new FormData(e.target);
-        const formData = [...formDataElem].reduce<Record<string, unknown>>(
-          (acc, item) => {
-            const [key, value] = item;
-            acc[key] = value;
-            return acc;
-          },
-          {}
-        );
-        // @ts-expect-error
+        const formData = [...formDataElem].reduce((acc, item) => {
+          const [key, value] = item;
+          // @ts-expect-error: Should expect string
+          acc[key] = value;
+          return acc;
+        }, {} as UserData);
+
         UserController.changeUser(formData).then(() => {
           AuthController.fetchUser();
         });
