@@ -26,7 +26,7 @@ class Store extends EventBus {
 
 const store = new Store();
 
-// @ts-ignore
+// @ts-expect-error
 window.store = store;
 
 export function connect<SP>(mapStateToProps: (state: Indexed) => SP) {

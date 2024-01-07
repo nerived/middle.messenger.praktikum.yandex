@@ -56,7 +56,7 @@ class ChatsController {
 
 const controller = new ChatsController();
 
-// @ts-ignore
+// @ts-expect-error
 window.chatsController = controller;
 
 export default controller;

@@ -92,7 +92,7 @@ class MessagesController {
     transport.on(
       WSTransportEvents.Message,
       (message) =>
-        // @ts-ignore
+        // @ts-expect-error
         // eslint-disable-next-line implicit-arrow-linebreak
         this.onMessage(id, message)
       // eslint-disable-next-line function-paren-newline
@@ -104,7 +104,7 @@ class MessagesController {
 
 const controller = new MessagesController();
 
-// @ts-ignore
+// @ts-expect-error
 window.messagesController = controller;
 
 export default controller;

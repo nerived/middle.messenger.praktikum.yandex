@@ -35,7 +35,7 @@ export class ChangePasswordPage extends Block {
           if (key === 'newPasswordCheck') {
             return acc;
           }
-          // @ts-ignore
+          // @ts-expect-error
           acc[key] = value;
           return acc;
         }, {} as UserChangePassword);

@@ -36,7 +36,7 @@ export class EditProfilePage extends Block {
           },
           {}
         );
-        // @ts-ignore
+        // @ts-expect-error
         UserController.changeUser(formData).then(() => {
           AuthController.fetchUser();
         });
