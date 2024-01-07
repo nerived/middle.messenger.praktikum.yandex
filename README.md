@@ -12,11 +12,9 @@
 
 ## ПР:
 
-[Sprint 2](https://github.com/nerived/middle.messenger.praktikum.yandex/pull/6)
+[Sprint 3](https://github.com/nerived/middle.messenger.praktikum.yandex/pull/9)
 
 ## Ссылки на страницы:
-
-Поскольку проект реализован как SPA. В приложении приcутствует навигация вверху страницы
 
 - [root page](https://chimerical-maamoul-86f62a.netlify.app/)
 
