@@ -12,19 +12,13 @@
 
 ## ПР:
 
-[Sprint 1](https://github.com/nerived/middle.messenger.praktikum.yandex/pull/4)
+[Sprint 2](https://github.com/nerived/middle.messenger.praktikum.yandex/pull/6)
 
 ## Ссылки на страницы:
 
-- [Login](https://chimerical-maamoul-86f62a.netlify.app/pages/login)
-- [Create account](https://chimerical-maamoul-86f62a.netlify.app/pages/join)
-- [Chats](https://chimerical-maamoul-86f62a.netlify.app/pages/chats)
-- [Profile](https://chimerical-maamoul-86f62a.netlify.app/pages/profile)
-- [Edit profile](https://chimerical-maamoul-86f62a.netlify.app/pages/edit-profile)
-- [Change-password](https://chimerical-maamoul-86f62a.netlify.app/pages/change-password)
-- [404](https://chimerical-maamoul-86f62a.netlify.app/pages/404)
-- [500](https://chimerical-maamoul-86f62a.netlify.app/pages/500)
-- [Popup](https://chimerical-maamoul-86f62a.netlify.app/pages/popup)
+Поскольку проект реализован как SPA. В приложении приcутствует навигация вверху страницы
+
+- [root page](https://chimerical-maamoul-86f62a.netlify.app/)
 
 ---
 
@@ -38,3 +32,19 @@
 
 Запуск билда
 `yarn buid`
+
+Typescript watcher
+`yarn watch-ts`
+
+Проверки
+`yarn check-lint`
+`yarn check-ts`
+`yarn check-style`
+
+## Технологии
+
+`Vite`
+`Handlebars`
+`Typescript`
+`Scss`
+`Express`

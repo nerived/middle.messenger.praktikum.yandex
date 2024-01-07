@@ -1,5 +1,5 @@
 <div class="root-centered">
-  {{#Form}}
+  {{#Form onSubmit=onSubmit}}
     {{#AuthformBox}}
       {{{AuthformHead title="Login"}}}
 
@@ -13,7 +13,7 @@
           {{{Button label="Sign in" type='submit'}}}
         </div>
         <div class="login-action">
-          {{{NavButton label="Create account" page='join' }}}
+          {{{NavButton label="Create account" route='/sign-up' }}}
         </div>
       {{/AuthformFooter}}
 
