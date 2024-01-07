@@ -1,0 +1,29 @@
+.messenger {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &-messages {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &-control {
+    margin: -15px -15px 0;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid var(--border);
+  }
+
+  &-add {
+    color: var(--primary);
+    margin-left: 20px;
+  }
+
+  &-delete {
+    margin-left: 20px;
+    color: var(--error);
+  }
+}

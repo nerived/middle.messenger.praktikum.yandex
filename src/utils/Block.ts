@@ -2,6 +2,7 @@
 
 import { nanoid } from 'nanoid';
 
+import { isEqual } from '../services';
 import { EventBus, Callback } from './EventBus';
 
 export interface BlockProps {
@@ -41,22 +42,28 @@ class Block<Props extends BlockProps = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps = {} as Props) {
-    const props = {} as Props;
-    const children: Record<string, Block<Props> | Block<Props>[]> = {};
+  _getChildrenAndProps(childrenAndProps: Props): {
+    props: Props;
+    children: Record<string, Block | Block[]>;
+  } {
+    const props: Record<string, unknown> = {};
+    const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (
-        value instanceof Block ||
-        (Array.isArray(value) && value.every((item) => item instanceof Block))
+        Array.isArray(value) &&
+        value.length > 0 &&
+        value.every((v) => v instanceof Block)
       ) {
-        children[key] = value;
+        children[key as string] = value;
+      } else if (value instanceof Block) {
+        children[key as string] = value;
       } else {
-        props[key as keyof Props] = value;
+        props[key] = value;
       }
     });
 
-    return { props, children };
+    return { props: props as Props, children };
   }
 
   private _addEvents() {
@@ -121,11 +128,10 @@ class Block<Props extends BlockProps = any> {
   }
 
   protected componentDidUpdate(oldProps: Props, newProps: Props) {
-    const isTheSameObject = oldProps === newProps;
-    return isTheSameObject || true;
+    return isEqual(oldProps, newProps);
   }
 
-  public setProps = (nextProps: Partial<Props>) => {
+  public setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }

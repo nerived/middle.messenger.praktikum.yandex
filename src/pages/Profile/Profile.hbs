@@ -3,36 +3,37 @@
   {{#ProfileBox}}
     {{{ProfileLeft}}}
     {{#ProfileRight}}
-      {{{Avatar name='Ivan' isEditAlloved='true'}}}
+      {{{Avatar name=first_name isEditAlloved='true' avatarUrl=avatar}}}
       {{#UserDetails}}
-        {{{Field mod='profile' placeholder="Email" label="Email" value='pochta@yandex.ru' readonly='readonly'
+        {{{Field mod='profile' placeholder="not set" label="Email" value=email readonly='readonly'
 name='email'}}}
-        {{{Field mod='profile' placeholder="Login" label="Login" value='ivanivanov' readonly='readonly'
+        {{{Field mod='profile' placeholder="not set" label="Login" value=login readonly='readonly'
 name='login'}}}
-        {{{Field mod='profile' placeholder="First name" label="First name" value='Ivan' readonly='readonly'
+        {{{Field mod='profile' placeholder="not set" label="First name" value=first_name readonly='readonly'
 name='first_name'}}}
-        {{{Field mod='profile' placeholder="Second Name" label="Second Name" value='Ivanov' readonly='readonly'
+        {{{Field mod='profile' placeholder="not set" label="Second Name" value=second_name readonly='readonly'
 name='second_name'}}}
-        {{{Field mod='profile' placeholder="Display Name" label="Display Name" value='Ivanov' readonly='readonly'
+        {{{Field mod='profile' placeholder="not set" label="Display Name" value=display_name readonly='readonly'
 name='display_name'}}}
-        {{{Field mod='profile' placeholder="Phone" label="Phone" value='+7 (909) 967 30 30'readonly='readonly'
+        {{{Field mod='profile' placeholder="not set" label="Phone" value=phone readonly='readonly'
 name='phone'}}}
       {{/UserDetails}}
 
       {{#UserDetails}}
         {{#Raw}}
-          {{{NavButton label="Change data" page='editProfile' }}}
+          {{{NavButton label="Change data" route='/editProfile' }}}
         {{/Raw}}
 
         {{#Raw}}
-          {{{NavButton label="Change password" page='changePassword' }}}
+          {{{NavButton label="Change password" route='/changePassword' }}}
         {{/Raw}}
 
         {{#Raw}}
-          {{{Link label="Logout" class='link--red' }}}
+          {{{Link label="Logout" class='link--red' onClick=onLogout}}}
         {{/Raw}}
       {{/UserDetails}}
 
     {{/ProfileRight}}
   {{/ProfileBox}}
+  {{{PopupManager}}}
 {{/Container}}

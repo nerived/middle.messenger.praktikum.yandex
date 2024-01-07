@@ -1,7 +1,30 @@
 import Block from './utils/Block';
 
 import { registerComponent } from './utils/registerComponent';
-import { render } from './utils/render';
+
+import Router from './utils/Router';
+import AuthController from './controllers/AuthController';
+
+import { LoginPage } from './pages/Login';
+import { JoinPage } from './pages/Join';
+import { NotFoundPage } from './pages/NotFound';
+import { ServerErrorPage } from './pages/ServerError';
+import ProfilePage from './pages/Profile';
+import EditProfilePage from './pages/EditProfile';
+import ChangePasswordPage from './pages/ChangePassword';
+import ChatsPage from './pages/Chats';
+
+enum Routes {
+  Index = '/',
+  Join = '/sign-up',
+  Login = '/login',
+  NotFound = '/notFound',
+  ServerError = '/serverError',
+  ChangePassword = '/changePassword',
+  Profile = '/settings',
+  EditProfile = '/editProfile',
+  Chats = '/messenger',
+}
 
 import './css/index.scss';
 
@@ -9,6 +32,11 @@ import './css/index.scss';
 import { Raw } from './components/blocks/Raw';
 import { Avatar } from './components/blocks/Avatar';
 import { ChatItem } from './components/blocks/ChatItem';
+import ChatsList from './components/blocks/ChatsList';
+import MessageField from './components/blocks/MessageField';
+import { ChatsHead } from './components/blocks/ChatsHead';
+import Messenger from './components/blocks/Messenger';
+import Message from './components/blocks/Message';
 import { UserDetails } from './components/blocks/UserDetails';
 import { JoinForm } from './components/blocks/JoinForm';
 import { LoginForm } from './components/blocks/LoginForm';
@@ -29,27 +57,30 @@ import {
   ProfileLeft,
   ProfileRight,
 } from './components/layout/Profile';
-import {
-  ChatsBox,
-  ChatsLeft,
-  ChatsRight,
-  ChatsField,
-  ChatsHead,
-} from './components/layout/Chats';
-import { PopupBox, PopupContent } from './components/layout/Popup';
+
+import PopupManager from './components/layout/PopupManager';
 
 // ui
 import { Button } from './components/ui/Button';
+import { ActionButton } from './components/ui/ActionButton';
 import { NavButton } from './components/ui/NavButton';
 import { Input } from './components/ui/Input';
 import { InputFile } from './components/ui/InputFile';
 import { Field } from './components/ui/Field';
 import { Link } from './components/ui/Link';
 
+import { ChangeAvatar } from './components/popups/ChangeAvatar';
+import { CreateChat } from './components/popups/CreateChat';
+import AddUserToChat from './components/popups/AddUserToChat';
+import DeleteUserFromChat from './components/popups/DeleteUserFromChat';
+
 // blocks
 registerComponent('Raw', Raw as typeof Block);
 registerComponent('Avatar', Avatar as typeof Block);
 registerComponent('ChatItem', ChatItem as typeof Block);
+registerComponent('ChatsList', ChatsList as typeof Block);
+registerComponent('Messenger', Messenger as typeof Block);
+registerComponent('Message', Message as typeof Block);
 registerComponent('UserDetails', UserDetails as typeof Block);
 registerComponent('JoinForm', JoinForm as typeof Block);
 registerComponent('LoginForm', LoginForm as typeof Block);
@@ -69,23 +100,64 @@ registerComponent('ProfileBox', ProfileBox as typeof Block);
 registerComponent('ProfileLeft', ProfileLeft as typeof Block);
 registerComponent('ProfileRight', ProfileRight as typeof Block);
 
-registerComponent('ChatsBox', ChatsBox as typeof Block);
-registerComponent('ChatsLeft', ChatsLeft as typeof Block);
-registerComponent('ChatsRight', ChatsRight as typeof Block);
-registerComponent('ChatsField', ChatsField as typeof Block);
+registerComponent('MessageField', MessageField as typeof Block);
 registerComponent('ChatsHead', ChatsHead as typeof Block);
 
-registerComponent('PopupBox', PopupBox as typeof Block);
-registerComponent('PopupContent', PopupContent as typeof Block);
+registerComponent('PopupManager', PopupManager as typeof Block);
 
 // ui
 registerComponent('Button', Button as typeof Block);
+registerComponent('ActionButton', ActionButton as typeof Block);
 registerComponent('NavButton', NavButton as typeof Block);
 registerComponent('Input', Input as typeof Block);
 registerComponent('InputFile', InputFile as typeof Block);
 registerComponent('Field', Field as typeof Block);
 registerComponent('Link', Link as typeof Block);
 
-window.addEventListener('DOMContentLoaded', () => {
-  render('login');
+// popups
+registerComponent('ChangeAvatar', ChangeAvatar as typeof Block);
+registerComponent('CreateChat', CreateChat as typeof Block);
+registerComponent('AddUserToChat', AddUserToChat as typeof Block);
+registerComponent('DeleteUserFromChat', DeleteUserFromChat as typeof Block);
+
+window.addEventListener('DOMContentLoaded', async () => {
+  Router.use(Routes.Index, LoginPage)
+    .use(Routes.Login, LoginPage)
+    .use(Routes.Join, JoinPage)
+    .use(Routes.NotFound, NotFoundPage)
+    .use(Routes.ServerError, ServerErrorPage)
+    .use(Routes.Profile, ProfilePage)
+    .use(Routes.EditProfile, EditProfilePage)
+    .use(Routes.ChangePassword, ChangePasswordPage)
+    .use(Routes.Chats, ChatsPage);
+
+  let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Join:
+    case Routes.ServerError:
+    case Routes.NotFound:
+      isProtectedRoute = false;
+      break;
+    default: {
+      isProtectedRoute = true;
+    }
+  }
+
+  try {
+    await AuthController.fetchUser();
+
+    Router.start();
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.Profile);
+    }
+  } catch (e) {
+    Router.start();
+
+    if (isProtectedRoute) {
+      Router.go(Routes.Index);
+    }
+  }
 });

@@ -1,15 +1,44 @@
-<div class="chatItem">
+<div class="chatItem {{#if isSelected}}chatItem--selected{{/if}}">
   <div class="chatItem-inner">
     <div class="chatItem-left">
-      <div class="chatItem-avatar"></div>
+      <div class="chatItem-avatar">
+        {{#with info}}
+          {{#if avatar}}
+            <img src="https://ya-praktikum.tech/api/v2/resources{{avatar}}" alt="avatart">
+          {{/if}}
+        {{/with}}
+      </div>
     </div>
     <div class="chatItem-middle">
-      <div class="chatItem-name">Andry</div>
-      <div class="chatItem-last">Friends, I have a special news release for you!...</div>
+      <div class="chatItem-name">
+        {{#with info}}
+          {{title}}
+        {{/with}}
+      </div>
+      <div class="chatItem-last">
+        {{#with info}}
+          {{#with last_message as |last|}}
+            {{#with user as |user|}}
+              {{user.first_name}} {{user.second_name}}
+            {{/with}}:
+            {{content}}
+          {{/with}}
+        {{/with}}
+      </div>
     </div>
     <div class="chatItem-right">
-      <div class="chatItem-time">15:12</div>
-      <div class="chatItem-count">4</div>
+      <div class="chatItem-time">
+        {{#with info}}
+          {{#with last_message}}
+            {{time}}
+          {{/with}}
+        {{/with}}
+      </div>
+      <div class="chatItem-count">
+        {{#with info}}
+          {{unread_count}}
+        {{/with}}
+      </div>
     </div>
   </div>
 </div>

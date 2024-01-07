@@ -1,0 +1,18 @@
+.chats {
+  display: flex;
+  flex: 1;
+
+  &-left {
+    width: 310px;
+    background: var(--side-bg);
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  &-right {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -28,7 +28,7 @@ export class Field extends Block<FieldProps> {
     const value = e.target.value;
 
     const validationMessage = isValidValue(name, value);
-    this.setProps({ errorMessage: validationMessage, value });
+    this.setProps({ ...this.props, errorMessage: validationMessage, value });
   }
 
   render() {

@@ -1,0 +1,25 @@
+<div class="messenger">
+  {{#if selectedChat }}
+    <div class="messenger-control">
+      <div class="messenger-add">
+        {{#ActionButton onClick=onAddUser}}
+          Add user
+        {{/ActionButton}}
+      </div>
+      <div class="messenger-delete">
+        {{#ActionButton onClick=onDeleteUser}}
+          Delete user
+        {{/ActionButton}}
+      </div>
+
+    </div>
+    <div class="messenger-messages">
+      {{#each messages}}
+        {{{Message message=this}}}
+      {{/each}}
+    </div>
+    {{{MessageField}}}
+  {{else}}
+    {{{Stub descr='Select chat to send a message' }}}
+  {{/if}}
+</div>

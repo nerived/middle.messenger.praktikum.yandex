@@ -1,6 +1,10 @@
 .chatItem {
   padding: 0 12px;
 
+  &--selected {
+    background-color: rgba(234, 234, 234, 0.4);
+  }
+
   &-inner {
     border-width: 1px 0 1px 0;
     border-color: var(--border);
@@ -8,6 +12,7 @@
     padding: 12px 0;
     display: flex;
   }
+
   &-left {
     margin-right: 10px;
     flex-shrink: 0;
@@ -20,6 +25,7 @@
     background-color: var(--border);
   }
   &-middle {
+    flex: 1;
   }
 
   &-name {
@@ -41,6 +47,7 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
   }
 
   &-time {
