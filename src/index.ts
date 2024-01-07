@@ -134,10 +134,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
-    case Routes.Index:
     case Routes.Join:
-    case Routes.ServerError:
-    case Routes.NotFound:
       isProtectedRoute = false;
       break;
     default: {
