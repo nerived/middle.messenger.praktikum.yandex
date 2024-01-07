@@ -6,7 +6,7 @@ import AuthController from '../../controllers/AuthController';
 import template from './Profile.hbs';
 
 export interface ProfilePageProps extends BlockProps {
-  onLogout: () => void;
+  onLogout: (...args: any) => void;
 }
 
 export class ProfilePage extends Block {
@@ -14,7 +14,8 @@ export class ProfilePage extends Block {
     AuthController.fetchUser();
     super({
       ...props,
-      onLogout: () => {
+      onLogout: (e: any) => {
+        e.preventDefault();
         AuthController.logout();
       },
     });

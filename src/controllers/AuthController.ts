@@ -45,6 +45,7 @@ export class AuthController {
   }
 
   async logout() {
+    console.log('logout');
     try {
       MessagesController.closeAll();
       await this.api.logout();
