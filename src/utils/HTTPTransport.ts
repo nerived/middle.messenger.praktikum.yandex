@@ -1,4 +1,5 @@
 import { YA } from '../services';
+import Router from './Router';
 
 export const enum METHODS {
   GET = 'GET',
@@ -121,6 +122,9 @@ export class HTTPTransport {
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 401) {
+            Router.go('/');
+          }
           if (xhr.status < 400) {
             resolve(xhr.response);
           } else {
