@@ -148,7 +148,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     Router.start();
-    Router.go(window.location.pathname);
+    if (window.location.pathname === Routes.Index) {
+      Router.go(Routes.Chats);
+    } else {
+      Router.go(window.location.pathname);
+    }
   } catch (e) {
     Router.start();
 
