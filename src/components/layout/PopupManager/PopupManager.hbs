@@ -1,0 +1,29 @@
+<div class="popup  {{#if popupId}}popup--active{{/if}}">
+  <div class="popup-overlay">
+    <div class="popup-content">
+      <div class="popup-close">
+        {{#ActionButton onClick=onClosePopup}}X{{/ActionButton}}
+      </div>
+
+      {{#if (eq popupId "CHANGE_USER_AVATAR")}}
+        {{{ChangeAvatar}}}
+      {{/if}}
+
+      {{#if (eq popupId "CHANGE_CHAT_AVATAR")}}
+        {{{ChangeChatAvatar}}}
+      {{/if}}
+      {{#if (eq popupId "CREATE_CHAT")}}
+        {{{CreateChat}}}
+      {{/if}}
+      {{#if (eq popupId "ADD_USER_TO_CHAT")}}
+        {{{AddUserToChat}}}
+      {{/if}}
+      {{#if (eq popupId "DELETE_USER_FROM_CHAT")}}
+        {{{DeleteUserFromChat}}}
+      {{/if}}
+      {{#if (eq popupId "DELETE_CHAT")}}
+        {{{DeleteChat}}}
+      {{/if}}
+    </div>
+  </div>
+</div>

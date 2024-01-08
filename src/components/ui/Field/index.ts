@@ -21,6 +21,11 @@ export class Field extends Block<FieldProps> {
     });
 
     this.validateService = this.validateService.bind(this);
+    this.setProps = this.setProps.bind(this);
+  }
+
+  protected componentDidUpdate(): boolean {
+    return true;
   }
 
   validateService(e: Event & { target: HTMLFormElement }) {
@@ -28,7 +33,7 @@ export class Field extends Block<FieldProps> {
     const value = e.target.value;
 
     const validationMessage = isValidValue(name, value);
-    this.setProps({ errorMessage: validationMessage, value });
+    this.setProps({ ...this.props, errorMessage: validationMessage, value });
   }
 
   render() {

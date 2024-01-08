@@ -1,11 +1,11 @@
 import Block, { BlockProps } from '../../../utils/Block';
-import { render, ROUTES } from '../../../utils/render';
+import Router from '../../../utils/Router';
 
 import template from './NavButton.hbs';
 
 export interface NavButtonProps extends BlockProps {
   label: string;
-  page: string;
+  route: string;
   class?: string;
 }
 
@@ -16,7 +16,7 @@ export class NavButton extends Block<NavButtonProps> {
       events: {
         click: (e: Event) => {
           const target = e.target as HTMLElement | HTMLButtonElement;
-          let pageName = '';
+          let routeName = '';
 
           if (!(target instanceof HTMLButtonElement)) {
             const parentElement = target.closest(
@@ -24,15 +24,14 @@ export class NavButton extends Block<NavButtonProps> {
             ) as HTMLButtonElement;
 
             if (parentElement) {
-              pageName = parentElement.dataset.page || '';
+              routeName = parentElement.dataset.route || '';
             }
           } else {
-            if (target.dataset.page) {
-              pageName = target.dataset.page;
+            if (target.dataset.route) {
+              routeName = target.dataset.route;
             }
           }
-
-          render(pageName as keyof typeof ROUTES);
+          Router.go(routeName);
         },
       },
     });

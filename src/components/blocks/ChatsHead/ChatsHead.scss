@@ -1,0 +1,19 @@
+.chatHead {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+
+  &-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  &-search {
+    display: flex;
+    flex-direction: column;
+  }
+}

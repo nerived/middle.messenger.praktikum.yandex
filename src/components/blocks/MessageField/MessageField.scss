@@ -1,0 +1,10 @@
+.message {
+  &-field {
+    display: flex;
+  }
+
+  &-send {
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+}

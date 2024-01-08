@@ -40,4 +40,5 @@ export function registerComponent<Type extends typeof Block>(
       return `<div ${dataAttribute}>${contents}</div>`;
     }
   );
+  Handlebars.registerHelper('eq', (a, b) => a === b);
 }

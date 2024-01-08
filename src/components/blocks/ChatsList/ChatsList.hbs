@@ -1,0 +1,10 @@
+<div class='chatList'>
+  {{#if isLoaded }}
+    {{#each chats}}
+      {{{ChatItem info=this selectedChat=../selectedChat}}}
+    {{/each}}
+  {{else}}
+
+    <div class='chatList-loader'> Loading...</div>
+  {{/if}}
+</div>
