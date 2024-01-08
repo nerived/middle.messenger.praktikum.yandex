@@ -8,6 +8,10 @@
       {{#if (eq popupId "CHANGE_USER_AVATAR")}}
         {{{ChangeAvatar}}}
       {{/if}}
+
+      {{#if (eq popupId "CHANGE_CHAT_AVATAR")}}
+        {{{ChangeChatAvatar}}}
+      {{/if}}
       {{#if (eq popupId "CREATE_CHAT")}}
         {{{CreateChat}}}
       {{/if}}
@@ -16,6 +20,9 @@
       {{/if}}
       {{#if (eq popupId "DELETE_USER_FROM_CHAT")}}
         {{{DeleteUserFromChat}}}
+      {{/if}}
+      {{#if (eq popupId "DELETE_CHAT")}}
+        {{{DeleteChat}}}
       {{/if}}
     </div>
   </div>

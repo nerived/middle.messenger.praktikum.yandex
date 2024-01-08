@@ -1,4 +1,4 @@
-import API, { ChatsAPI } from '../api/ChatsAPI';
+import API, { ChatsAPI, ChangeChatAvatar } from '../api/ChatsAPI';
 import store from '../utils/Store';
 import MessagesController from './MessagesController';
 
@@ -39,8 +39,18 @@ class ChatsController {
     this.api.addUsers(id, [userId]);
   }
 
+  async changeAvatar(data: ChangeChatAvatar) {
+    await this.api.changeAvatar(data);
+  }
+
   async delete(id: number) {
     await this.api.delete(id);
+
+    this.fetchChats();
+  }
+
+  async deleteUsers(id: number, userId: number) {
+    await this.api.deleteUsers(id, [userId]);
 
     this.fetchChats();
   }
@@ -51,6 +61,10 @@ class ChatsController {
 
   selectChat(id: number) {
     store.set('selectedChat', id);
+  }
+
+  resetSelectChat() {
+    store.set('selectedChat', undefined);
   }
 }
 

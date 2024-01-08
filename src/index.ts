@@ -73,6 +73,8 @@ import { ChangeAvatar } from './components/popups/ChangeAvatar';
 import { CreateChat } from './components/popups/CreateChat';
 import AddUserToChat from './components/popups/AddUserToChat';
 import DeleteUserFromChat from './components/popups/DeleteUserFromChat';
+import ChangeChatAvatar from './components/popups/ChangeChatAvatar';
+import DeleteChat from './components/popups/DeleteChat';
 
 // blocks
 registerComponent('Raw', Raw as typeof Block);
@@ -119,6 +121,8 @@ registerComponent('ChangeAvatar', ChangeAvatar as typeof Block);
 registerComponent('CreateChat', CreateChat as typeof Block);
 registerComponent('AddUserToChat', AddUserToChat as typeof Block);
 registerComponent('DeleteUserFromChat', DeleteUserFromChat as typeof Block);
+registerComponent('ChangeChatAvatar', ChangeChatAvatar as typeof Block);
+registerComponent('DeleteChat', DeleteChat as typeof Block);
 
 window.addEventListener('DOMContentLoaded', async () => {
   Router.use(Routes.Index, LoginPage)

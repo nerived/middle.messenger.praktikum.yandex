@@ -31,12 +31,15 @@ export class MessageField extends Block {
           },
           {}
         );
-        e.target.reset();
 
-        MessagesController.sendMessage(
-          this.props.selectedChat!,
-          formData.message as string
-        );
+        if (formData.message) {
+          e.target.reset();
+
+          MessagesController.sendMessage(
+            this.props.selectedChat!,
+            formData.message as string
+          );
+        }
       },
     });
   }

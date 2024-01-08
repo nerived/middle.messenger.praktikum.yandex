@@ -18,6 +18,11 @@ type Options = {
   headers?: Record<string, string>;
 };
 
+type HTTPMethod = <R = unknown>(
+  url: string,
+  options?: Omit<Options, 'method'>
+) => Promise<R>;
+
 export class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
 
@@ -27,44 +32,44 @@ export class HTTPTransport {
     this._endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(
+  public get: HTTPMethod = (
     url = '/',
     options = {} as Omit<Options, 'method'>
-  ): Promise<Response> {
-    return this.request<Response>(
+  ) => {
+    return this.request(
       this._endpoint + url,
       { ...options, method: METHODS.GET },
       options.timeout
     );
-  }
+  };
 
-  public post<Response = void>(
+  public post: HTTPMethod = (
     url: string,
     options = {} as Omit<Options, 'method'>
-  ): Promise<Response> {
-    return this.request<Response>(
+  ) => {
+    return this.request(
       this._endpoint + url,
       { ...options, method: METHODS.POST },
       options.timeout
     );
-  }
+  };
 
-  public put<Response = void>(
+  public put: HTTPMethod = (
     url: string,
     options = {} as Omit<Options, 'method'>
-  ): Promise<Response> {
-    return this.request<Response>(
+  ) => {
+    return this.request(
       this._endpoint + url,
       { ...options, method: METHODS.PUT },
       options.timeout
     );
-  }
+  };
 
-  public patch<Response = void>(
+  public patch: HTTPMethod = (
     url: string,
     options = {} as Omit<Options, 'method'>
-  ): Promise<Response> {
-    return this.request<Response>(
+  ) => {
+    return this.request(
       this._endpoint + url,
       {
         ...options,
@@ -72,13 +77,13 @@ export class HTTPTransport {
       },
       options.timeout
     );
-  }
+  };
 
-  public delete<Response>(
+  public delete: HTTPMethod = (
     url: string,
     options = {} as Omit<Options, 'method'>
-  ): Promise<Response> {
-    return this.request<Response>(
+  ) => {
+    return this.request(
       this._endpoint + url,
       {
         ...options,
@@ -86,7 +91,7 @@ export class HTTPTransport {
       },
       options.timeout
     );
-  }
+  };
 
   private request<Response>(
     url: string,

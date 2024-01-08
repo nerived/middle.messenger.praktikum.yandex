@@ -26,7 +26,6 @@ export class EventBus {
 
   emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event]) {
-      console.error(`Event not found: ${event}`);
       return;
     }
 

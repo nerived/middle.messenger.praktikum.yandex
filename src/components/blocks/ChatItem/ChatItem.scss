@@ -23,6 +23,11 @@
     height: 50px;
     border-radius: 50%;
     background-color: var(--border);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
   }
   &-middle {
     flex: 1;

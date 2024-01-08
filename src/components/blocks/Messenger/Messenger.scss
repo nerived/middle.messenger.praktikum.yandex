@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 1px;
 
   &-messages {
     display: flex;
     flex-direction: column;
     flex: 1;
+    overflow: auto;
   }
 
   &-control {
@@ -14,7 +16,57 @@
     padding: 5px 15px;
     display: flex;
     justify-content: flex-end;
+    align-items: CENTER;
     border-bottom: 1px solid var(--border);
+  }
+  &-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--border);
+    border-radius: 50%;
+    margin-right: auto;
+    overflow: hidden;
+    font-size: 0;
+
+    button {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: pointer;
+    }
+  }
+  &-menu {
+    position: relative;
+
+    &__action {
+      &:hover {
+        & .messenger-menu__list {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+
+    &__list {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      opacity: 0;
+      visibility: hidden;
+      width: 200px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 15px;
+        top: -12px;
+      }
+    }
   }
 
   &-add {

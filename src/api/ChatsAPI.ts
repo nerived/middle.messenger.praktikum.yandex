@@ -45,7 +45,7 @@ export interface ChatParams {
   email?: string;
 }
 
-export interface ChangeChatAvatar {
+export interface ChangeChatAvatar extends FormData {
   chatId: number;
   avatar: File;
 }

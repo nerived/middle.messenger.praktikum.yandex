@@ -33,7 +33,10 @@ export class DeleteUserFromChat extends Block {
           {}
         );
 
-        ChatsController.delete(formData.login as number);
+        ChatsController.deleteUsers(
+          props.selectedChat,
+          formData.login as number
+        );
         PopupsController.delete();
       },
     });

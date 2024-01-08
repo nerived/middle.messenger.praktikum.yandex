@@ -70,7 +70,9 @@ class Block<Props extends BlockProps = any> {
     const { events } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
-        this._element?.addEventListener(eventName, events[eventName]);
+        this._element?.addEventListener(eventName, events[eventName], {
+          once: true,
+        });
       });
     }
   }

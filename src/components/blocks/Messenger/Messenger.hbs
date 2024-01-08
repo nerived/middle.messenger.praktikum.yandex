@@ -1,16 +1,46 @@
 <div class="messenger">
   {{#if selectedChat }}
     <div class="messenger-control">
-      <div class="messenger-add">
-        {{#ActionButton onClick=onAddUser}}
-          Add user
+      <div class="messenger-avatar">
+        {{#ActionButton onClick=onChageChatAvatar}}
+          {{#with chat}}
+            {{#if avatar}}
+              <img src="https://ya-praktikum.tech/api/v2/resources{{avatar}}" alt="avatart">
+            {{/if}}
+          {{/with}}
         {{/ActionButton}}
       </div>
-      <div class="messenger-delete">
-        {{#ActionButton onClick=onDeleteUser}}
-          Delete user
-        {{/ActionButton}}
+      <div class="messenger-menu">
+        <div class="messenger-menu__action">
+          <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12.5" cy="13" r="12.5" fill="#F5F5F5" />
+            <circle cx="12.5" cy="7" r="1.5" fill="#3369F3" />
+            <circle cx="12.5" cy="13" r="1.5" fill="#3369F3" />
+            <circle cx="12.5" cy="19" r="1.5" fill="#3369F3" />
+          </svg>
+
+          <div class="messenger-menu__list">
+            <div class="messenger-add">
+              {{#ActionButton onClick=onAddUser}}
+                Add user
+              {{/ActionButton}}
+            </div>
+            <div class="messenger-delete">
+              {{#ActionButton onClick=onDeleteUser}}
+                Delete user
+              {{/ActionButton}}
+            </div>
+            <div class="messenger-delete">
+              {{#ActionButton onClick=onDeleteChat}}
+                Delete chat
+              {{/ActionButton}}
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
 
     </div>
     <div class="messenger-messages">
