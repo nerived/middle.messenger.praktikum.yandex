@@ -40,7 +40,7 @@
 
     &__action {
       &:hover {
-        & .messenger-menu__list {
+        .messenger-menu__list {
           opacity: 1;
           visibility: visible;
         }
