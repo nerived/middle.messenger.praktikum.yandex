@@ -1,7 +1,11 @@
-const enum METHODS {
+import { YA } from '../services';
+import Router from './Router';
+
+export const enum METHODS {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
+  PATCH = 'PATCH',
   DELETE = 'DELETE',
 }
 
@@ -10,93 +14,144 @@ const enum METHODS {
 type Options = {
   timeout?: number;
   method: METHODS;
-  data: any;
-  headers: Record<string, string>;
+  data?: any;
+  headers?: Record<string, string>;
 };
 
-type HTTPMethod = {
-  (url: string, options?: Partial<Options>): Promise<unknown>;
-};
+type HTTPMethod = <R = unknown>(
+  url: string,
+  options?: Omit<Options, 'method'>
+) => Promise<R>;
 
-function queryStringify(data: Options['data']) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
+export class HTTPTransport {
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+
+  protected _endpoint: string;
+
+  constructor(endpoint: string) {
+    this._endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
-  const keys = Object.keys(data);
-  return keys.reduce((acc, field, index) => {
-    return `${acc}${field}=${data[field].toString()}${
-      index < keys.length - 1 ? '&' : ''
-    }`;
-  }, '?');
-}
 
-class HTTPTransport {
-  get: HTTPMethod = (url, options = {}) => {
+  public get: HTTPMethod = (
+    url = '/',
+    options = {} as Omit<Options, 'method'>
+  ) => {
     return this.request(
-      url,
+      this._endpoint + url,
       { ...options, method: METHODS.GET },
       options.timeout
     );
   };
 
-  post: HTTPMethod = (url, options = {}) => {
+  public post: HTTPMethod = (
+    url: string,
+    options = {} as Omit<Options, 'method'>
+  ) => {
     return this.request(
-      url,
+      this._endpoint + url,
       { ...options, method: METHODS.POST },
       options.timeout
     );
   };
 
-  put: HTTPMethod = (url, options = {}) => {
+  public put: HTTPMethod = (
+    url: string,
+    options = {} as Omit<Options, 'method'>
+  ) => {
     return this.request(
-      url,
+      this._endpoint + url,
       { ...options, method: METHODS.PUT },
       options.timeout
     );
   };
 
-  delete: HTTPMethod = (url, options = {}) => {
+  public patch: HTTPMethod = (
+    url: string,
+    options = {} as Omit<Options, 'method'>
+  ) => {
     return this.request(
-      url,
-      { ...options, method: METHODS.DELETE },
+      this._endpoint + url,
+      {
+        ...options,
+        method: METHODS.PATCH,
+      },
       options.timeout
     );
   };
 
-  request = (
+  public delete: HTTPMethod = (
     url: string,
-    options: Partial<Options> & Required<Pick<Options, 'method'>>,
-    timeout = 5000
+    options = {} as Omit<Options, 'method'>
   ) => {
+    return this.request(
+      this._endpoint + url,
+      {
+        ...options,
+        method: METHODS.DELETE,
+      },
+      options.timeout
+    );
+  };
+
+  private request<Response>(
+    url: string,
+    options: Options = {
+      method: METHODS.GET,
+    },
+    timeout = 5000
+  ): Promise<Response> {
     const { method, data, headers = {} } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
-        reject(new Error('No method'));
+        reject(new Error('no method'));
         return;
       }
 
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
+      xhr.open(
+        method,
+        isGet && !!data ? `${url}${YA.queryStringify(data)}` : url
+      );
       xhr.timeout = timeout;
+
+      if (!(data instanceof FormData)) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
+
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
 
-      xhr.onload = () => {
-        resolve(xhr);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 401) {
+            Router.go('/');
+          }
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.ontimeout = reject;
+
+      xhr.onabort = () => reject(reject(new Error('abort')));
+      xhr.onerror = () => reject(reject(new Error('network error')));
+      xhr.ontimeout = () => reject(reject(new Error('timeout')));
+
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
-  };
+  }
 }
+
+export default HTTPTransport;

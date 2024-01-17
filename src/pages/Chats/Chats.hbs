@@ -1,10 +1,12 @@
 {{#Container}}
-  {{{Nav}}}
-  {{#ChatsBox}}
-    {{{ChatsLeft}}}
-    {{#ChatsRight}}
-      {{{Stub descr='Select chat to send a message' }}}
-      {{{ChatsField}}}
-    {{/ChatsRight}}
-  {{/ChatsBox}}
+  <div class="chats">
+    <div class="chats-left">
+      {{{ChatsHead}}}
+      {{{ChatsList}}}
+    </div>
+    <div class="chats-right">
+      {{{Messenger}}}
+    </div>
+  </div>
+  {{{PopupManager}}}
 {{/Container}}
