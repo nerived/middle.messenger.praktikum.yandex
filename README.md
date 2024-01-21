@@ -12,7 +12,7 @@
 
 ## ПР:
 
-[Sprint 3](https://github.com/nerived/middle.messenger.praktikum.yandex/pull/9)
+[Sprint 4](https://github.com/nerived/middle.messenger.praktikum.yandex/pull/11)
 
 ## Ссылки на страницы:
 
@@ -38,6 +38,8 @@ Typescript watcher
 `yarn check-lint`
 `yarn check-ts`
 `yarn check-style`
+`yarn test`
+`yarn precommit`
 
 ## Технологии
 
@@ -46,3 +48,4 @@ Typescript watcher
 `Typescript`
 `Scss`
 `Express`
+`Husky`
