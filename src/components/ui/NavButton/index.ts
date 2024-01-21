@@ -1,5 +1,5 @@
-import Block, { BlockProps } from '../../../utils/Block';
-import Router from '../../../utils/Router';
+import Block, { BlockProps } from '../../../utils/Block.ts';
+import Router from '../../../utils/Router.ts';
 
 import template from './NavButton.hbs';
 
@@ -18,7 +18,7 @@ export class NavButton extends Block<NavButtonProps> {
           const target = e.target as HTMLElement | HTMLButtonElement;
           let routeName = '';
 
-          if (!(target instanceof HTMLButtonElement)) {
+          if (!(target.tagName !== 'BUTTON')) {
             const parentElement = target.closest(
               '.navbtn'
             ) as HTMLButtonElement;

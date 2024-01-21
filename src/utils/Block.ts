@@ -2,15 +2,15 @@
 
 import { nanoid } from 'nanoid';
 
-import { isEqual } from '../services';
-import { EventBus, Callback } from './EventBus';
+import isEqual from '../services/isEqual.ts';
+import { EventBus, Callback } from './EventBus.ts';
 
 export interface BlockProps {
   [key: string | symbol]: any;
   events?: Record<string, (...args: any) => void>;
 }
 
-class Block<Props extends BlockProps = any> {
+export class Block<Props extends BlockProps = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',

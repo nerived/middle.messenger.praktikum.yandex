@@ -2,8 +2,12 @@
   "extends": "airbnb-base/legacy",
   "parser": "@typescript-eslint/parser",
   "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "jest"
   ],
+  "env": {
+    "jest/globals": true
+  },
   "rules": {
       "strict": 0,
       "no-console": 0,
@@ -13,6 +17,8 @@
       "no-shadow": 0,
       "no-unused-vars": 0,
       "max-classes-per-file": 0,
+      "no-constructor-return": 0,
+      "no-new": 0,
       "max-params": [
           2,
           3
