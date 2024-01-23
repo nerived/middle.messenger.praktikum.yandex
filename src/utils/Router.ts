@@ -1,6 +1,6 @@
-import Block, { BlockProps } from './Block';
+import Block, { BlockProps } from './Block.ts';
 
-interface BlockConstructable<P extends BlockProps = any> {
+export interface BlockConstructable<P extends BlockProps = any> {
   new (props: P): Block<P>;
 }
 
@@ -65,7 +65,7 @@ class Route {
 }
 
 class Router {
-  private static __instance: Router;
+  private static __instance?: Router;
 
   private routes: Route[] = [];
 
@@ -77,7 +77,7 @@ class Router {
 
   constructor(rootQuery: string) {
     if (Router.__instance) {
-      return;
+      return Router.__instance;
     }
     this.routes = [];
     this.history = window.history;
@@ -129,6 +129,12 @@ class Router {
 
   public forward() {
     this.history.forward();
+  }
+
+  public reset() {
+    delete Router.__instance;
+
+    new Router(this._rootQuery);
   }
 
   public getRoute(pathname: string) {

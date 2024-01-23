@@ -1,5 +1,5 @@
-import { YA } from '../services';
-import Router from './Router';
+import queryStringify from '../services/YA/queryString.ts';
+import Router from './Router.ts';
 
 export const enum METHODS {
   GET = 'GET',
@@ -32,64 +32,49 @@ export class HTTPTransport {
     this._endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get: HTTPMethod = (
-    url = '/',
-    options = {} as Omit<Options, 'method'>
-  ) => {
+  public get: HTTPMethod = (url = '/', options = {}) => {
     return this.request(
       this._endpoint + url,
       { ...options, method: METHODS.GET },
-      options.timeout
+      options?.timeout
     );
   };
 
-  public post: HTTPMethod = (
-    url: string,
-    options = {} as Omit<Options, 'method'>
-  ) => {
+  public post: HTTPMethod = (url, options = {}) => {
     return this.request(
       this._endpoint + url,
       { ...options, method: METHODS.POST },
-      options.timeout
+      options?.timeout
     );
   };
 
-  public put: HTTPMethod = (
-    url: string,
-    options = {} as Omit<Options, 'method'>
-  ) => {
+  public put: HTTPMethod = (url, options = {}) => {
     return this.request(
       this._endpoint + url,
       { ...options, method: METHODS.PUT },
-      options.timeout
+      options?.timeout
     );
   };
 
-  public patch: HTTPMethod = (
-    url: string,
-    options = {} as Omit<Options, 'method'>
-  ) => {
+  public patch: HTTPMethod = (url, options = {}) => {
     return this.request(
       this._endpoint + url,
       {
         ...options,
         method: METHODS.PATCH,
       },
-      options.timeout
+      options?.timeout
     );
   };
 
-  public delete: HTTPMethod = (
-    url: string,
-    options = {} as Omit<Options, 'method'>
-  ) => {
+  public delete: HTTPMethod = (url, options = {}) => {
     return this.request(
       this._endpoint + url,
       {
         ...options,
         method: METHODS.DELETE,
       },
-      options.timeout
+      options?.timeout
     );
   };
 
@@ -113,7 +98,7 @@ export class HTTPTransport {
 
       xhr.open(
         method,
-        isGet && !!data ? `${url}${YA.queryStringify(data)}` : url
+        isGet && !!data ? `${url}?${queryStringify(data)}` : url
       );
       xhr.timeout = timeout;
 
