@@ -21,6 +21,7 @@ const hbsLoader = {
       };
     }
   },
+
   transform: (source, options) => {
     const { url } = options;
     const { pathname } = new URL(url);
@@ -30,12 +31,12 @@ const hbsLoader = {
     }
 
     const result = `
-      import Handlebars from 'handlebars/runtime.js';
+    import Handlebars from 'handlebars/runtime.js';
 
-      export default Handlebars.template(${Handlebars.precompile(
-        String(source)
-      )});
-    `;
+    export default Handlebars.template(${Handlebars.precompile(
+      String(source)
+    )});
+  `;
 
     return { source: result };
   },

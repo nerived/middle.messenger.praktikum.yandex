@@ -1,38 +1,46 @@
-import esmock from 'esmock';
 import { expect } from 'chai';
-import sinon from 'sinon';
-import type BlockType from './Block.ts';
+import Handlebars from 'handlebars';
 
-const eventBusMock = {
-  on: sinon.fake(),
-  emit: sinon.fake(),
-};
+import BlockOrigin from './Block.ts';
 
-describe('Block', async () => {
-  const { default: Block } = (await esmock('./Block.ts', {
-    './EventBus.ts': {
-      EventBus: class {
-        emit = eventBusMock.emit;
+describe('Block', () => {
+  const templateString = '<button>{{label}}</button>';
 
-        on = eventBusMock.on;
-      },
-    },
-  })) as { default: typeof BlockType };
+  class TestComponent extends BlockOrigin<Record<string, any>> {
+    render() {
+      return this.compile(Handlebars.compile(templateString), this.props);
+    }
+  }
 
-  class ComponentMock extends Block {}
-
-  it('Block should fire init event on initialization', () => {
-    new ComponentMock({});
-
-    expect(eventBusMock.emit.calledWith('init')).to.eq(true);
+  it('Block should return element by call getContent', () => {
+    const testComponent = new TestComponent({});
+    expect(testComponent.getContent()).to.be.instanceof(
+      window.HTMLButtonElement
+    );
   });
 
-  it('Block should fire CDU event on props update', () => {
-    const components = new ComponentMock({});
-    components.setProps({ test: 'test' });
+  it('Block should render props value', () => {
+    const testLabel = 'testLabel';
+    const testComponent = new TestComponent({ label: testLabel });
 
-    expect(eventBusMock.emit.calledWith('flow:component-did-update')).to.eq(
-      true
-    );
+    expect(testComponent.element?.innerHTML).to.eq(testLabel);
+  });
+
+  it('Block should hide block', () => {
+    const testComponent = new TestComponent({});
+    testComponent.hide();
+    const el = testComponent.getContent();
+    const result = el?.style.display;
+
+    expect(result).to.be.equal('none');
+  });
+
+  it('Block should show block', () => {
+    const testComponent = new TestComponent({});
+    testComponent.show();
+    const el = testComponent.getContent();
+    const result = el?.style.display;
+
+    expect(result).to.be.equal('block');
   });
 });

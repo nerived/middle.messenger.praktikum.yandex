@@ -96,7 +96,10 @@ export class HTTPTransport {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
+      xhr.open(
+        method,
+        isGet && !!data ? `${url}?${queryStringify(data)}` : url
+      );
       xhr.timeout = timeout;
 
       if (!(data instanceof FormData)) {

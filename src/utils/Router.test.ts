@@ -30,19 +30,29 @@ describe('Router', () => {
     expect(result).to.eq(Router);
   });
 
-  describe('.back()', () => {
-    it('should render a page on history back action', () => {
-      Router.use('/', BlockMock).start();
-
-      Router.back();
-
-      expect(getContentFake.callCount).to.eq(1);
-    });
-  });
-
   it('should render a page on start', () => {
     Router.use('/', BlockMock).start();
 
     expect(getContentFake.callCount).to.eq(1);
+  });
+
+  it('should go to page', () => {
+    const route = '/profile';
+    Router.go(route);
+    expect(window.location.pathname).to.eq(route);
+  });
+
+  it('should render a page on history back action', () => {
+    Router.use('/', BlockMock).start();
+
+    Router.back();
+
+    expect(getContentFake.callCount).to.eq(1);
+  });
+
+  it('check forward', () => {
+    const forwardSpy = sinon.spy(window.history, 'forward');
+    Router.forward();
+    expect(forwardSpy.callCount).to.be.equal(1);
   });
 });

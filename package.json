@@ -4,23 +4,27 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "postinstall": "husky install",
     "dev": "vite",
     "watch-ts": "tsc --noEmit --watch",
     "prebuild": "tsc --noEmit",
     "start": "npm run build && node ./server.js",
-    "build": "yarn check-all && vite build --emptyOutDir",
+    "build": "vite build --emptyOutDir",
     "preview": "vite preview",
-    "check-all": "yarn check-lint && yarn check-ts && yarn check-style && yarn test",
-    "check-lint": "./node_modules/.bin/eslint src --ext .ts",
-    "check-ts": "./node_modules/.bin/tsc --noEmit",
-    "check-style": "stylelint '**/*.scss'",
-    "test": "mocha"
+    "lint:script": "eslint src --ext .ts",
+    "check-ts": "tsc --noEmit",
+    "lint:style": "npx stylelint '**/*.scss'",
+    "test": "mocha",
+    "prepare": "husky install",
+    "check-all": "npm run lint:script && npm run lint:style && npm test && npm run check-ts"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn check-all",
-      "pre-push": "yarn check-all"
+      "pre-commit": "npm run check-all"
     }
+  },
+  "lint-staged": {
+    "*.ts": "npm run check-ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
@@ -30,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "chai": "^5.0.0",
+    "create-esm-loader": "^0.2.5",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-jest": "^27.6.3",
@@ -37,14 +42,15 @@
     "esm-loader-typescript": "^1.0.6",
     "esmock": "^2.6.2",
     "express": "^4.18.2",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jsdom": "^23.2.0",
+    "lint-staged": "^15.2.0",
     "mocha": "^10.2.0",
-    "node-esm-loader": "^0.3.0",
+    "node-esm-loader": "^0.2.5",
     "sass": "^1.69.5",
     "sinon": "^17.0.1",
-    "stylelint": "^15.11.0",
-    "stylelint-scss": "^5.3.1",
+    "stylelint": "^16.2.0",
+    "stylelint-config-standard-scss": "^13.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",

@@ -16,9 +16,10 @@
     padding: 5px 15px;
     display: flex;
     justify-content: flex-end;
-    align-items: CENTER;
+    align-items: center;
     border-bottom: 1px solid var(--border);
   }
+
   &-avatar {
     width: 40px;
     height: 40px;
@@ -35,6 +36,7 @@
       cursor: pointer;
     }
   }
+
   &-menu {
     position: relative;
 
@@ -54,11 +56,11 @@
       opacity: 0;
       visibility: hidden;
       width: 200px;
-      background-color: #fff;
+      background-color: #ffffff;
       border-radius: 12px;
-      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
 
-      &::before {
+      &:before {
         content: '';
         position: absolute;
         left: 0;

@@ -3,7 +3,7 @@
 import { nanoid } from 'nanoid';
 
 import isEqual from '../services/isEqual.ts';
-import { EventBus, Callback } from './EventBus.ts';
+import EventBus, { Callback } from './EventBus.ts';
 
 export interface BlockProps {
   [key: string | symbol]: any;

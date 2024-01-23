@@ -35,7 +35,7 @@ describe('set function', () => {
   it('should throw an error if path is not a string', () => {
     const keypathNotAString = 10;
 
-    // @ts-ignore because we want to check behaviour in runtime
+    // @ts-expect-error: because we want to check behaviour in runtime
     const f = () => set(obj, keypathNotAString, value);
 
     expect(f).to.throw(Error);
